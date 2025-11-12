@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Mapa de Crimes</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<style>html,body,#map{height:100%;margin:0}</style>
+</head>
+<body>
+<div id="map"></div>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+const map = L.map('map').setView([-22.9, -43.2], 11);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19, attribution:'© OpenStreetMap'}).addTo(map);
+fetch('/api/crimes')
+  .then(r=>r.json())
+  .then(crimes=>{
+    crimes.forEach(c=>{
+      const lat=c.latitude||c.location?.latitude;
+      const lng=c.longitude||c.location?.longitude;
+      if(lat&&lng){
+        L.circle([lat,lng],{color:'red',fillColor:'#f03',fillOpacity:0.5,radius:150})
+         .bindPopup(`<b>Local:</b> ${c.address||'Desconhecido'}<br/><b>Data:</b> ${c.date?new Date(c.date).toLocaleString():'Sem data'}`)
+         .addTo(map);
+      }
+    });
+  });
+</script>
+</body>
+</html>
