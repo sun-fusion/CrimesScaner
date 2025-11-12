@@ -12,8 +12,8 @@ app.get('/api/crimes', async (req, res) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        email: "acainaoterraser@gmail.com",
-        password: "dioxfcekde-plasma.1."
+        email: "youmail@gmail.com",
+        password: "password"
       })
     });
 
