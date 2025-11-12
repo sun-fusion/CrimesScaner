@@ -8,9 +8,32 @@ app.use(express.static('public'));
 
 app.get('/api/crimes', async (req, res) => {
   try {
+<<<<<<< HEAD
 
 
     const ocorrenciasResp = (await fetch('crimes'));
+=======
+    const loginResp = await fetch('https://api-service.fogocruzado.org.br/api/v2/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: "youmail@gmail.com",
+        password: "password"
+      })
+    });
+
+    if (!loginResp.ok) {
+      const txt = await loginResp.text();
+      throw new Error('Falha no login: ' + txt);
+    }
+
+    const dadosLogin = await loginResp.json();
+    const token = dadosLogin.access_token;
+
+    const ocorrenciasResp = await fetch('https://api-service.fogocruzado.org.br/api/v2/occurrences?take=200', {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+>>>>>>> origin/main
 
     if (!ocorrenciasResp.ok) {
       const txt = await ocorrenciasResp.text();
