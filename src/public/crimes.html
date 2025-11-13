@@ -57,7 +57,7 @@
 
       #github:hover { background: #444; }
 
-      /* Pop-up de formulário */
+    
       #formPopup {
         display: none;
         position: fixed;
@@ -107,9 +107,8 @@
       <button id="btnExport">Exportar JSON</button>
     </div>
 
-    <button id="github" onclick="window.open('https://github.com/SEU_USUARIO', '_blank')">GitHub</button>
+    <button id="github" onclick="window.open('https://github.com/leviata-sudo', '_blank')">GitHub</button>
 
-    <!-- Overlay + Formulário -->
     <div id="overlay"></div>
     <div id="formPopup">
       <h3>Adicionar Crime</h3>
@@ -205,6 +204,9 @@
           <b>Bairro:</b> ${c.bairro}<br>
           <b>Cidade:</b> ${c.city}<br>
           <b>Data:</b> ${new Date(c.data).toLocaleString('pt-BR')}
+          <button onclick="window.open('https://wa.me/?text=Crime%20reportado:%20${encodeURIComponent(c.description)}', '_blank')">
+                  Reportar via WhatsApp
+            </button>
         `)
         .addTo(map);
 
