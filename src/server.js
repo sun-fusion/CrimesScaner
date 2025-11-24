@@ -23,4 +23,5 @@ app.get('/api/crimes', async (req, res) => {
   }
 })
 app.listen(PORT, () => console.log(`Servidor rodando em: http://localhost:${PORT}`));
-#adicionar um thortle aqui e um verificar de forwaded e csp
+/*adicionar um thortle aqui e um verificar de forwaded e csp
+*/
